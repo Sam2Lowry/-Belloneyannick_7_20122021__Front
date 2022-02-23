@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { trigger, transition, useAnimation } from '@angular/animations';
-import { fadeIn, fadeOut } from './carousel.animations';
+import { fadeIn, fadeOut, scaleIn, scaleOut } from './carousel.animations';
 
 @Component({
   selector: 'app-carousel',
@@ -9,10 +9,10 @@ import { fadeIn, fadeOut } from './carousel.animations';
   animations: [
     trigger('carouselAnimation', [
       transition('void => *', [
-        useAnimation(fadeIn, { params: { time: '1300ms' } }),
+        useAnimation(scaleIn, { params: { time: '1300ms' } }),
       ]),
       transition('* => void', [
-        useAnimation(fadeOut, { params: { time: '1300ms' } }),
+        useAnimation(scaleOut, { params: { time: '1300ms' } }),
       ]),
     ]),
   ],
