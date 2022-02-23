@@ -13,12 +13,14 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { FeedComponent } from './components/feed/feed.component';
+import { CarouselComponent } from './components/tools/carousel/carousel.component';
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
     HomePageComponent,
     FeedComponent,
+    CarouselComponent,
   ],
   imports: [
     BrowserModule,
