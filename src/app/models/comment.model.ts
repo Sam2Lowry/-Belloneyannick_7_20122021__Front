@@ -1,11 +1,10 @@
-export class Post {
+export class comment {
   id!: number;
-  title!: string;
   content!: string;
-  imageUrl!: string;
+  post_id!: number;
   author_id!: number;
   date_creation!: Date;
   date_update!: Date;
-  comments!: Comment[];
+  post!: any;
   user!: any;
 }
