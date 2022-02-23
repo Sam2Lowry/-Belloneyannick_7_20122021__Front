@@ -15,6 +15,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HomePageComponent } from './components/home-page/home-page.component';
 import { FeedComponent } from './components/feed/feed.component';
 import { CarouselComponent } from './components/tools/carousel/carousel.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -22,6 +24,8 @@ import { CarouselComponent } from './components/tools/carousel/carousel.componen
     HomePageComponent,
     FeedComponent,
     CarouselComponent,
+    RegisterComponent,
+    LoginComponent,
   ],
   imports: [
     BrowserModule,

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +8,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   title: string = 'Groupomania';
+  navigateToHome() {
+    this.router.navigateByUrl('/');
+  }
+  navigateToFeed() {
+    this.router.navigateByUrl('/feed');
+  }
+  navigateToLogin() {
+    this.router.navigateByUrl('/login');
+  }
+  navigateToRegister() {
+    this.router.navigateByUrl('/register');
+  }
 
-  constructor() {}
+  constructor(private router: Router) {}
 
   ngOnInit(): void {}
 }

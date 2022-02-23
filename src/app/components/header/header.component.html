@@ -1,22 +1,30 @@
 <mat-toolbar color="primary">
   <mat-toolbar-row>
-    <span>{{ title | uppercase }}</span>
+    <span class="title">{{ title | uppercase }}</span>
 
     <div class="navigate">
-      <mat-icon class="icon" aria-hidden="false" aria-label="home icon"
-        >home</mat-icon
-      >
-      <mat-icon class="icon" aria-hidden="false" aria-label="group icon"
-        >group</mat-icon
-      >
+      <button (click)="navigateToHome()" mat-button>
+        <mat-icon class="icon" aria-hidden="false" aria-label="home icon"
+          >home</mat-icon
+        >
+      </button>
+      <button (click)="navigateToFeed()" mat-button>
+        <mat-icon class="icon" aria-hidden="false" aria-label="group icon"
+          >group</mat-icon
+        >
+      </button>
     </div>
     <span class="spacer"></span>
-    <mat-icon class="icon" aria-hidden="false" aria-label="login icon"
-      >login</mat-icon
-    >
-    <mat-icon class="icon" aria-hidden="false" aria-label="how_to_reg icon"
-      >how_to_reg</mat-icon
-    >
+    <button (click)="navigateToLogin()" mat-button>
+      <mat-icon class="icon" aria-hidden="false" aria-label="login icon"
+        >login</mat-icon
+      >
+    </button>
+    <button (click)="navigateToRegister()" mat-button>
+      <mat-icon class="icon" aria-hidden="false" aria-label="how_to_reg icon"
+        >how_to_reg</mat-icon
+      >
+    </button>
     <mat-icon class="icon" aria-hidden="false" aria-label="account_circle icon"
       >account_circle</mat-icon
     >

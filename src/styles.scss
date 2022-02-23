@@ -1,4 +1,8 @@
 /* You can add global styles to this file, and also import other style files */
+@font-face {
+  font-family: LobsterTwo-Regular;
+  src: url(assets/fonts/LobsterTwo-Regular.otf) format("opentype");
+}
 
 html,
 body {
@@ -6,7 +10,7 @@ body {
 }
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-family: Roboto, LobsterTwo-Regular, "Helvetica Neue", sans-serif;
 }
 body {
   background-color: #a554d48e;
