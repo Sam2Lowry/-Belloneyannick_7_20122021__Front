@@ -35,5 +35,12 @@ export class CarouselComponent implements OnInit {
     this.currentSlide = next === this.slides.length ? 0 : next;
     console.log('next clicked, new current slide is: ', this.currentSlide);
   }
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.preloadImages();
+  }
+  preloadImages() {
+    for (const slide of this.slides) {
+      new Image().src = slide.src;
+    }
+  }
 }
