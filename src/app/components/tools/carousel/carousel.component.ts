@@ -1,9 +1,21 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { trigger, transition, useAnimation } from '@angular/animations';
+import { fadeIn, fadeOut } from './carousel.animations';
 
 @Component({
   selector: 'app-carousel',
   templateUrl: './carousel.component.html',
   styleUrls: ['./carousel.component.scss'],
+  animations: [
+    trigger('carouselAnimation', [
+      transition('void => *', [
+        useAnimation(fadeIn, { params: { time: '1300ms' } }),
+      ]),
+      transition('* => void', [
+        useAnimation(fadeOut, { params: { time: '1300ms' } }),
+      ]),
+    ]),
+  ],
 })
 export class CarouselComponent implements OnInit {
   @Input() slides: any = [];
