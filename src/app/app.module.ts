@@ -8,14 +8,18 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
-import { CardComponent } from './components/card/card.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { HomePageComponent } from './components/home-page/home-page.component';
-import { CardListComponent } from './components/card-list/card-list.component';
+import { FeedComponent } from './components/feed/feed.component';
 @NgModule({
-  declarations: [AppComponent, HeaderComponent, CardComponent, HomePageComponent, CardListComponent],
+  declarations: [
+    AppComponent,
+    HeaderComponent,
+    HomePageComponent,
+    FeedComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
