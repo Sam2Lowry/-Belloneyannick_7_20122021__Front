@@ -6,6 +6,6 @@ export class Post {
   author_id!: number;
   date_creation!: Date;
   date_update!: Date;
-  comments!: Comment[];
+  comment!: Comment[];
   user!: any;
 }
