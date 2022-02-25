@@ -14,6 +14,7 @@ import { FeedComponent } from './components/feed/feed.component';
 import { CarouselComponent } from './components/tools/carousel/carousel.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { UserProfileComponent } from './components/user-profile/user-profile.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,6 +24,7 @@ import { LoginComponent } from './components/login/login.component';
     CarouselComponent,
     RegisterComponent,
     LoginComponent,
+    UserProfileComponent,
   ],
   imports: [
     BrowserModule,

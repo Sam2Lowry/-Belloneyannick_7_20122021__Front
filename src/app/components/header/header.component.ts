@@ -20,6 +20,9 @@ export class HeaderComponent implements OnInit {
   navigateToRegister() {
     this.router.navigateByUrl('/register');
   }
+  navigateToProfile() {
+    this.router.navigateByUrl('/profile');
+  }
 
   constructor(private router: Router) {}
 
