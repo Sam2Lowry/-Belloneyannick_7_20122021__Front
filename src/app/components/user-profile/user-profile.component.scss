@@ -1,12 +1,15 @@
 .header-image {
   background-size: cover;
-  height: 40px;
-  width: 40px;
+  height: 80px;
+  width: 80px;
   border-radius: 50%;
   flex-shrink: 0;
   object-fit: cover;
 }
-
+.mat-card-avatar {
+  height: 80px;
+  width: 80px;
+}
 .card {
   width: 20rem;
   max-width: 20rem;
@@ -24,4 +27,9 @@
   align-items: center;
   width: 100%;
   justify-content: center;
+  font-size: large;
+}
+.mat-mini-fab {
+  margin-top: 2%;
+  margin-left: 2%;
 }
