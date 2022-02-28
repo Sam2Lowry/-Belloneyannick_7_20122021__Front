@@ -17,14 +17,14 @@
     </p>
   </mat-card-content>
   <mat-card-actions>
-    <button
-      mat-raised-button
-      color="primary"
-      matBadge="8"
-      matBadgePosition="after"
-      matBadgeColor="accent"
-    >
-      Commenter
-    </button>
+    <mat-form-field appearance="fill">
+      <mat-label>Title</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Comment</mat-label>
+      <input matInput />
+    </mat-form-field>
+    <button mat-raised-button color="primary">Post</button>
   </mat-card-actions>
 </mat-card>
