@@ -3,16 +3,26 @@
     <mat-card-header>
       <mat-card-title>Log in</mat-card-title>
     </mat-card-header>
-    <form class="example-form">
+    <form [formGroup]="form" (submit)="submit()" class="example-form">
       <mat-card-content>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="email" />
+          <input
+            formControlName="email"
+            matInput
+            placeholder="email"
+            required
+          />
         </mat-form-field>
         <mat-form-field class="example-full-width">
-          <input matInput placeholder="Password" />
+          <input
+            formControlName="password"
+            matInput
+            placeholder="Password"
+            required
+          />
         </mat-form-field>
       </mat-card-content>
-      <button mat-stroked-button color="accent" class="btn-block">
+      <button mat-stroked-button color="accent" class="btn-block" type="submit">
         Log in
       </button>
     </form>
