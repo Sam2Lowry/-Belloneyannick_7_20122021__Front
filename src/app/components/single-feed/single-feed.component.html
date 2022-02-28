@@ -28,3 +28,14 @@
     <button mat-raised-button color="primary">Post</button>
   </mat-card-actions>
 </mat-card>
+<ul>
+  <li ng-repeat="comment in comments">
+    <header>
+      <h1 ng-class="{ author: isAuthor(comment.author.email) }">
+        Comment author name
+      </h1>
+      <img ng-src="comment.imageUrl" />
+    </header>
+    <p ng-bind-html="parseContent(comment.content)"></p>
+  </li>
+</ul>
