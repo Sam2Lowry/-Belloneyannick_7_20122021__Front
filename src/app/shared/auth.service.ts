@@ -28,7 +28,7 @@ export class AuthService {
     return this.http
       .post<any>(`${this.endpoint}/auth/login`, user)
       .subscribe((res: any) => {
-        localStorage.setItem('access_token', res.token);
+        localStorage.setItem('access_token', res.token); // Set token in localstorage from response
         this.getUserProfile(res._id).subscribe((res) => {
           this.currentUser = res;
           this.router.navigate(['user-profile/' + res.msg._id]);
@@ -42,7 +42,7 @@ export class AuthService {
 
   get isLoggedIn(): boolean {
     let authToken = localStorage.getItem('access_token');
-    return authToken !== null ? true : false;
+    return authToken !== null ? true : false; // Return true if token exists
   }
 
   doLogout() {
