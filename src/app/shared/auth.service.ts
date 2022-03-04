@@ -31,7 +31,7 @@ export class AuthService {
         localStorage.setItem('access_token', res.token); // Set token in localstorage from response
         this.getUserProfile(res._id).subscribe((res) => {
           this.currentUser = res;
-          this.router.navigate(['user-profile/' + res.msg._id]);
+          this.router.navigate(['users/' + res.msg._id]);
         });
       });
   }
