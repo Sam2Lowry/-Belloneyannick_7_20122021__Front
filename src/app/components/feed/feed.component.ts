@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-feed',
@@ -7,12 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FeedComponent implements OnInit {
   hidden = false;
-
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
   }
 
-  constructor() {}
+  constructor(private dialog: MatDialog) {}
+
+  openDialog() {}
 
   ngOnInit(): void {}
 }

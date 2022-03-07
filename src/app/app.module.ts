@@ -16,6 +16,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { SingleFeedComponent } from './components/single-feed/single-feed.component';
+import { AddPostComponent } from './components/add-post/add-post.component';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { SingleFeedComponent } from './components/single-feed/single-feed.compon
     LoginComponent,
     UserProfileComponent,
     SingleFeedComponent,
+    AddPostComponent,
   ],
   imports: [
     BrowserModule,
