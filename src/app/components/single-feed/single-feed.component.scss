@@ -7,7 +7,16 @@
   background-image: url("https://material.angular.io/assets/img/examples/shiba1.jpg");
   background-size: cover;
 }
-
+.post-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+mat-form-field {
+  width: 100%;
+}
+// Language: scss
+// styling for the single feed list of comments
 ul {
   padding-left: 80px;
   list-style: none;
@@ -117,10 +126,4 @@ ul li p a {
 }
 ul li p a:hover {
   text-decoration: none;
-}
-
-.post-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
 }
