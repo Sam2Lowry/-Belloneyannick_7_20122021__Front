@@ -6,9 +6,13 @@ export class AuthService {
   // ...
   public isAuthenticated(): boolean {
     const token: any = localStorage.getItem('token');
-
     // Check whether the token is expired and return
     // true or false
     return !this.jwtHelper.isTokenExpired(token);
+  }
+  public isAdmin(): boolean {
+    const token: any = localStorage.getItem('token');
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    return decodedToken.role === 'admin';
   }
 }
