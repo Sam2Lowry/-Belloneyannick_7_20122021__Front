@@ -1,3 +1,4 @@
+import { AddPostComponent } from './../add-post/add-post.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 
@@ -14,7 +15,9 @@ export class FeedComponent implements OnInit {
 
   constructor(private dialog: MatDialog) {}
 
-  openDialog() {}
+  openDialog() {
+    this.dialog.open(AddPostComponent);
+  }
 
   ngOnInit(): void {}
 }
