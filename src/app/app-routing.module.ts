@@ -1,3 +1,4 @@
+import { SingleFeedComponent } from './components/single-feed/single-feed.component';
 import { AuthGuardService } from './auth/auth-guard.service';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes, CanActivate } from '@angular/router';
@@ -18,6 +19,10 @@ const routes: Routes = [
   {
     path: 'home',
     component: HomePageComponent,
+  },
+  {
+    path: 'test',
+    component: SingleFeedComponent,
   },
   {
     path: 'feed',
