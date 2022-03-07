@@ -3,7 +3,7 @@
     <mat-card-header>
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
-    <form [formGroup]="form" (submit)="submit()" class="example-form">
+    <form [formGroup]="RegisterForm" (submit)="submit()" class="example-form">
       <mat-card-content>
         <mat-form-field class="example-full-width">
           <input
@@ -24,7 +24,7 @@
         color="accent"
         class="btn-block"
         type="submit"
-        [disabled]="!form.valid"
+        [disabled]="!RegisterForm.valid"
       >
         Register
       </button>

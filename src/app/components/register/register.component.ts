@@ -1,3 +1,5 @@
+import { Router } from '@angular/router';
+import { ApiService } from './../../api.service';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -7,18 +9,22 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./register.component.scss'],
 })
 export class RegisterComponent implements OnInit {
-  form!: FormGroup;
+  RegisterForm!: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) {}
-
-  ngOnInit(): void {
-    this.form = this.formBuilder.group({
+  constructor(
+    private fb: FormBuilder,
+    public apiservice: ApiService,
+    public router: Router
+  ) {
+    this.RegisterForm = this.fb.group({
       display_name: ['', Validators.required],
       email: ['', Validators.required],
       password: ['', Validators.required],
     });
   }
+
+  ngOnInit(): void {}
   submit() {
-    console.log(this.form.value);
+    console.log(this.RegisterForm.value);
   }
 }
