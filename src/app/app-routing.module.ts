@@ -1,4 +1,3 @@
-import { AuthGuardGuard } from './core/guards/auth-guard.guard';
 import { NgModule, Component } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomePageComponent } from './components/home-page/home-page.component';
@@ -16,7 +15,6 @@ const routes: Routes = [
   {
     path: 'feed',
     component: FeedComponent,
-    canActivate: [AuthGuardGuard],
     /*
     data : {
     expectedRole: ['user', 'admin']
@@ -34,7 +32,6 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent,
-    canActivate: [AuthGuardGuard],
   },
 ];
 
