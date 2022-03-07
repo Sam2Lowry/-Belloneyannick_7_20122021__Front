@@ -12,7 +12,7 @@ export class RegisterComponent implements OnInit {
   RegisterForm!: FormGroup;
 
   constructor(
-    private fb: FormBuilder,
+    public fb: FormBuilder,
     public apiservice: ApiService,
     public router: Router
   ) {
@@ -24,6 +24,7 @@ export class RegisterComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
   submit() {
     console.log(this.RegisterForm.value);
     this.apiservice.signUp(this.RegisterForm.value).subscribe((res) => {
