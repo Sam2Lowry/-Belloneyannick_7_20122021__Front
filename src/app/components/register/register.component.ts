@@ -26,5 +26,12 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
   submit() {
     console.log(this.RegisterForm.value);
+    this.apiservice.signUp(this.RegisterForm.value).subscribe((res) => {
+      if (res.result) {
+        console.log(res);
+        this.RegisterForm.reset();
+        this.router.navigate(['/login']);
+      }
+    });
   }
 }
