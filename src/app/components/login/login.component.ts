@@ -1,4 +1,4 @@
-import { ApiService } from './../../api.service';
+import { ApiService } from '../../auth/api.service';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';

@@ -5,6 +5,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { InterceptorService } from './components/tools/loader/interceptor.service';
 import { AngularMaterialModule } from './modules/angular-material.module'; // <-- import MaterialModule
 
 import { AppComponent } from './app.component';
@@ -41,7 +42,13 @@ import { AddPostComponent } from './components/add-post/add-post.component';
     AngularMaterialModule,
     FlexLayoutModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorService,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
 })

@@ -21,10 +21,6 @@ const routes: Routes = [
     component: HomePageComponent,
   },
   {
-    path: 'test',
-    component: SingleFeedComponent,
-  },
-  {
     path: 'feed',
     component: FeedComponent,
   },
@@ -39,6 +35,10 @@ const routes: Routes = [
   {
     path: 'profile',
     component: UserProfileComponent,
+  },
+  {
+    path: 'test',
+    component: SingleFeedComponent,
   },
 ];
 

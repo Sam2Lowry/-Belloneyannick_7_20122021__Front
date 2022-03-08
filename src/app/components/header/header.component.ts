@@ -1,3 +1,4 @@
+import { LoaderService } from './../tools/loader/loader.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
     this.router.navigateByUrl('/profile');
   }
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, public loaderService: LoaderService) {}
 
   ngOnInit(): void {}
 }
