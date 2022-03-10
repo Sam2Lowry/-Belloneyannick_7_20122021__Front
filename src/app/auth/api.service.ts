@@ -15,13 +15,13 @@ export class ApiService {
 
   // Register
   signUp(user: User): Observable<any> {
-    let api = `${this.endpoint}/register`;
+    let api = `${this.endpoint}/auth/register`;
     return this.http.post(api, user).pipe(catchError(this.handleError));
   }
   // Login
   signIn(user: User) {
     return this.http
-      .post<any>(`${this.endpoint}/login`, user)
+      .post<any>(`${this.endpoint}/auth/login`, user)
       .subscribe((res: any) => {
         this.router.navigate(['home']);
       });
