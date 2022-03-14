@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 import { User } from '../models/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -32,7 +32,16 @@ export class ApiService {
       this.router.navigate(['login']);
     }
   }
-
+  // User profile
+  getUserProfile(id: any): Observable<any> {
+    let api = `${this.endpoint}/users/${id}`;
+    return this.http.get(api).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+  }
   // Error
   handleError(error: HttpErrorResponse) {
     let msg = '';
@@ -44,5 +53,27 @@ export class ApiService {
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return msg;
+  }
+
+  // Get all users
+  getAllUsers(): Observable<any> {
+    let api = `${this.endpoint}/users`;
+    return this.http.get(api).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
+  }
+
+  //Get one user
+  getUser(id: any): Observable<any> {
+    let api = `${this.endpoint}/users/${id}`;
+    return this.http.get(api).pipe(
+      map((res: any) => {
+        return res || {};
+      }),
+      catchError(this.handleError)
+    );
   }
 }
