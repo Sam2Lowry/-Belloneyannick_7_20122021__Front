@@ -23,6 +23,7 @@ export class ApiService {
     return this.http
       .post<any>(`${this.endpoint}/auth/login`, user)
       .subscribe((res: any) => {
+        this.setSession(res);
         this.router.navigate(['home']);
       });
   }
@@ -41,18 +42,6 @@ export class ApiService {
       }),
       catchError(this.handleError)
     );
-  }
-  // Error
-  handleError(error: HttpErrorResponse) {
-    let msg = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      msg = error.error.message;
-    } else {
-      // server-side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return msg;
   }
 
   // Get all users
@@ -75,5 +64,21 @@ export class ApiService {
       }),
       catchError(this.handleError)
     );
+  }
+  // Error
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return msg;
+  }
+
+  private setSession(authResult: any) {
+    localStorage.setItem('token', authResult.token);
   }
 }
