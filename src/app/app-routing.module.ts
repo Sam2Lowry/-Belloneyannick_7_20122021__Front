@@ -21,12 +21,17 @@ const routes: Routes = [
     component: HomePageComponent,
   },
   {
-    path: 'test',
-    component: SingleFeedComponent,
-  },
-  {
     path: 'feed',
-    component: FeedComponent,
+    children: [
+      {
+        path: '',
+        component: FeedComponent,
+      },
+      {
+        path: ':id',
+        component: SingleFeedComponent,
+      },
+    ],
   },
   {
     path: 'register',
@@ -37,7 +42,7 @@ const routes: Routes = [
     component: LoginComponent,
   },
   {
-    path: 'profile',
+    path: 'users/:id',
     component: UserProfileComponent,
   },
 ];

@@ -1,4 +1,4 @@
-import { ApiService } from './../../api.service';
+import { ApiService } from '../../auth/api.service';
 import { Router } from '@angular/router';
 import { FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -26,5 +26,6 @@ export class LoginComponent implements OnInit {
   ngOnInit(): void {}
   submit(): void {
     console.log(this.Loginform.value);
+    this.apiservice.signIn(this.Loginform.value);
   }
 }
