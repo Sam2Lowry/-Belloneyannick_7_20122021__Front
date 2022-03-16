@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../models/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -16,8 +15,9 @@ export class ApiService {
   // Register
   signUp(user: User): Observable<any> {
     let api = `${this.endpoint}/auth/register`;
-    return this.http.post(api, user).pipe(catchError(this.handleError));
+    return this.http.post(api, user);
   }
+
   // Login
   signIn(user: User) {
     return this.http
@@ -33,47 +33,19 @@ export class ApiService {
       this.router.navigate(['login']);
     }
   }
-  // User profile
-  getUserProfile(id: any): Observable<any> {
-    let api = `${this.endpoint}/users/${id}`;
-    return this.http.get(api).pipe(
-      map((res: any) => {
-        return res || {};
-      }),
-      catchError(this.handleError)
-    );
-  }
 
   // Get all users
-  getAllUsers(): Observable<any> {
-    let api = `${this.endpoint}/users`;
-    return this.http.get(api).pipe(
-      map((res: any) => {
-        return res || {};
-      }),
-      catchError(this.handleError)
-    );
+  getUsers(id: number): Observable<User[]> {
+    const url = `${this.endpoint}/users/`;
+    console.log(url);
+    return this.http.get<User[]>(url);
   }
 
   //Get one user
   getUser(id: number): Observable<User> {
     const url = `${this.endpoint}/users/${id}`;
-    return this.http
-      .get(url)
-      .pipe(tap((_) => console.log(`fetched user id=${id}`)));
-  }
-
-  // Error
-  handleError(error: HttpErrorResponse) {
-    let msg = '';
-    if (error.error instanceof ErrorEvent) {
-      // client-side error
-      msg = error.error.message;
-    } else {
-      // server-side error
-      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
-    }
-    return msg;
+    console.log(url);
+    return this.http.get<User>(url);
   }
 
   private setSession(authResult: any) {
