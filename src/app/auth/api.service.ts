@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
 import { User } from '../models/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -15,7 +16,7 @@ export class ApiService {
   // Register
   signUp(user: User): Observable<any> {
     let api = `${this.endpoint}/auth/register`;
-    return this.http.post(api, user);
+    return this.http.post(api, user).pipe(catchError(this.handleError));
   }
 
   // Login
@@ -50,5 +51,18 @@ export class ApiService {
 
   private setSession(authResult: any) {
     localStorage.setItem('token', authResult.token);
+  }
+
+  // Error
+  handleError(error: HttpErrorResponse) {
+    let msg = '';
+    if (error.error instanceof ErrorEvent) {
+      // client-side error
+      msg = error.error.message;
+    } else {
+      // server-side error
+      msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    return msg;
   }
 }
