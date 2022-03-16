@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { User } from '../models/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
@@ -56,15 +56,13 @@ export class ApiService {
   }
 
   //Get one user
-  getUser(id: any): Observable<any> {
-    let api = `${this.endpoint}/users/${id}`;
-    return this.http.get(api).pipe(
-      map((res: any) => {
-        return res || {};
-      }),
-      catchError(this.handleError)
-    );
+  getUser(id: number): Observable<User> {
+    const url = `${this.endpoint}/users/${id}`;
+    return this.http
+      .get(url)
+      .pipe(tap((_) => console.log(`fetched user id=${id}`)));
   }
+
   // Error
   handleError(error: HttpErrorResponse) {
     let msg = '';

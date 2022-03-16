@@ -4,4 +4,5 @@ export interface User {
   email?: string;
   password?: string;
   profile_image_url?: string;
+  role?: string;
 }
