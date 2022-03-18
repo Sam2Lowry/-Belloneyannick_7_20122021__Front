@@ -1,11 +1,10 @@
-import { Post } from './../../models/post';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { AddPostComponent } from './../add-post/add-post.component';
 import { Subscription } from 'rxjs';
 import { ApiService } from './../../auth/api.service';
+import { Post } from './../../models/post';
 import { ActivatedRoute } from '@angular/router';
-import { PositionStrategy } from '@angular/cdk/overlay';
 
 @Component({
   selector: 'app-feed',
@@ -14,7 +13,7 @@ import { PositionStrategy } from '@angular/cdk/overlay';
 })
 export class FeedComponent implements OnInit {
   private sub!: Subscription;
-  posts: Post | undefined;
+  posts: any;
   hidden = false;
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
@@ -31,8 +30,10 @@ export class FeedComponent implements OnInit {
   }
 
   getAllPost(): void {
-    this.apiService.getPosts().subscribe((posts) => (this.posts = posts));
-    console.log(this.posts);
+    this.apiService.getAllPosts().subscribe((res) => {
+      this.posts = res;
+      console.log(this.posts);
+    });
   }
 
   ngOnDestroy(): void {

@@ -4,6 +4,7 @@ import { catchError } from 'rxjs/operators';
 import { User } from '../models/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
+import { Post } from '../models/post';
 
 @Injectable({
   providedIn: 'root',
@@ -54,10 +55,10 @@ export class ApiService {
   }
 
   // Get all posts
-  getPosts(): Observable<any> {
+  public getAllPosts(): Observable<Post[]> {
     const url = `${this.endpoint}/posts/`;
     console.log(url);
-    return this.http.get(url);
+    return this.http.get<Post[]>(url);
   }
 
   // Get one post
