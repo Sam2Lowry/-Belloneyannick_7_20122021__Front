@@ -13,7 +13,7 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class FeedComponent implements OnInit {
   private sub!: Subscription;
-  posts: any;
+  posts: Post[] = [];
   hidden = false;
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
@@ -27,12 +27,21 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPost();
+    this.getCounterComment();
   }
 
   getAllPost(): void {
     this.apiService.getAllPosts().subscribe((res) => {
       this.posts = res;
       console.log(this.posts);
+    });
+  }
+
+  getCounterComment(): void {
+    this.apiService.getAllPosts().subscribe((res) => {
+      this.posts = res;
+      console.log(this.posts.length);
+      return this.posts.length;
     });
   }
 
