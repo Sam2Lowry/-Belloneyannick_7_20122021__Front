@@ -2,7 +2,7 @@ import { ApiService } from './../../auth/api.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, map } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',

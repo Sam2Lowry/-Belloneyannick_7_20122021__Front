@@ -36,7 +36,7 @@ export class ApiService {
   }
 
   // Get all users
-  getUsers(id: number): Observable<User[]> {
+  getUsers(): Observable<User[]> {
     const url = `${this.endpoint}/users/`;
     console.log(url);
     return this.http.get<User[]>(url);
@@ -51,6 +51,20 @@ export class ApiService {
 
   private setSession(authResult: any) {
     localStorage.setItem('token', authResult.token);
+  }
+
+  // Get all posts
+  getPosts(): Observable<any> {
+    const url = `${this.endpoint}/posts/`;
+    console.log(url);
+    return this.http.get(url);
+  }
+
+  // Get one post
+  getPost(id: number): Observable<any> {
+    const url = `${this.endpoint}/posts/${id}`;
+    console.log(url);
+    return this.http.get(url);
   }
 
   // Error
