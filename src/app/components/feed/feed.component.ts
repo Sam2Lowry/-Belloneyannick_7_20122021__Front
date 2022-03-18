@@ -1,6 +1,6 @@
-import { AddPostComponent } from './../add-post/add-post.component';
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { AddPostComponent } from './../add-post/add-post.component';
 
 @Component({
   selector: 'app-feed',

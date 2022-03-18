@@ -10,3 +10,9 @@
 #postCreate {
   margin-top: 1rem;
 }
+#cmdBox {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}

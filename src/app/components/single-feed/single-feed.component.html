@@ -22,9 +22,10 @@
       <textarea matInput placeholder="Ex. Qu'il est mignon ce chien"></textarea>
     </mat-form-field>
   </form>
-  <div mat-card-actions>
-    <button mat-raised-button color="primary">Commentez</button>
-  </div>
+  <mat-card-actions id="cmdBox">
+    <button mat-raised-button color="primary">Commenter</button>
+    <button mat-raised-button color="accent">Supprimer</button>
+  </mat-card-actions>
 </mat-card>
 
 <mat-card class="comment-card">
@@ -40,4 +41,7 @@
     "Lorem ipsum dolor sit amet consectetur adipisicing elit." Eum fuga magni
     quod perspiciatis ratione reiciendis veniam, ut quisquam dolores blanditiis?
   </mat-card-content>
+  <button mat-mini-fab color="primary">
+    <mat-icon>delete</mat-icon>
+  </button>
 </mat-card>

@@ -15,9 +15,19 @@
 mat-form-field {
   width: 100%;
 }
+.post-form {
+  margin: auto;
+}
+
 .comment-card {
   max-width: 35rem;
   margin-bottom: 8px;
   margin: 0 auto;
   margin-top: 1rem;
+}
+#cmdBox {
+  margin: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
 }
