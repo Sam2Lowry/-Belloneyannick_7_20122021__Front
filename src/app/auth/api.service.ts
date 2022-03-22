@@ -68,6 +68,13 @@ export class ApiService {
     return this.http.get(url);
   }
 
+  // Create post
+  createPost(post: Post): Observable<Post> {
+    const url = `${this.endpoint}/posts/`;
+    console.log(url);
+    return this.http.post<Post>(url, post);
+  }
+
   // Error
   handleError(error: HttpErrorResponse) {
     let msg = '';
