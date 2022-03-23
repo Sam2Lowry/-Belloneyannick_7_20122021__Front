@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
-@Injectable()
+@Injectable({
+  providedIn: 'root',
+})
 export class AuthService {
   constructor(public jwtHelper: JwtHelperService) {}
   // ...
@@ -14,5 +16,11 @@ export class AuthService {
     const token: any = localStorage.getItem('token');
     const decodedToken = this.jwtHelper.decodeToken(token);
     return decodedToken.role === 'admin';
+  }
+
+  public getUserId(): number {
+    const token: any = localStorage.getItem('token');
+    const decodedToken = this.jwtHelper.decodeToken(token);
+    return decodedToken.userId;
   }
 }

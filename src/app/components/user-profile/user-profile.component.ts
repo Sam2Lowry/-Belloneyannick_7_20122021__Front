@@ -2,7 +2,7 @@ import { ApiService } from './../../auth/api.service';
 import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { ActivatedRoute } from '@angular/router';
-import { Subscription, map } from 'rxjs';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-user-profile',
@@ -10,25 +10,19 @@ import { Subscription, map } from 'rxjs';
   styleUrls: ['./user-profile.component.scss'],
 })
 export class UserProfileComponent implements OnInit {
-  userId!: number | null;
-  user!: User | null;
   private sub!: Subscription;
+  user: User | undefined;
 
-  constructor(
-    private activatedRoute: ActivatedRoute,
-    private apiservice: ApiService
-  ) {}
+  constructor(private route: ActivatedRoute, private apiservice: ApiService) {}
 
   ngOnInit(): void {
-    this.sub = this.activatedRoute.params.subscribe((params) => {
-      this.userId = parseInt(params['id']);
-      this.apiservice
-        .getUser(this.userId)
-        .subscribe((data: User) => (this.user = data));
-      console.log(this.user);
-    });
+    this.getUser();
   }
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
+
+  getUser(): void {
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    this.apiservice.getUser(id).subscribe((user) => (this.user = user));
   }
+
+  ngOnDestroy(): void {}
 }
