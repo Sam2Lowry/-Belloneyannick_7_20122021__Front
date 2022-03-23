@@ -27,7 +27,7 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPost();
-    this.getCounterComment();
+    //this.getCounterComment();
   }
 
   getAllPost(): void {
@@ -37,15 +37,16 @@ export class FeedComponent implements OnInit {
     });
   }
 
-  getCounterComment(): void {
+  /*getCounterComment(): void {
     this.apiService.getAllPosts().subscribe((res) => {
       this.posts = res;
       console.log(this.posts.length);
       return this.posts.length;
     });
   }
+  */
 
   ngOnDestroy(): void {
-    this.sub.unsubscribe();
+    // this.sub.unsubscribe();
   }
 }

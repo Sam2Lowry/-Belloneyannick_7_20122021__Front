@@ -24,7 +24,5 @@ export class UserProfileComponent implements OnInit {
     this.apiservice.getUser(id).subscribe((user) => (this.user = user));
   }
 
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
-  }
+  ngOnDestroy(): void {}
 }

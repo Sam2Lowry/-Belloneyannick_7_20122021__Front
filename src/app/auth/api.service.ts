@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, map } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { User } from '../models/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
@@ -29,6 +29,8 @@ export class ApiService {
         this.router.navigate(['home']);
       });
   }
+
+  // Logout
   doLogout() {
     let removeToken = localStorage.removeItem('token');
     if (removeToken == null) {
@@ -68,11 +70,19 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  // Create post
+  // Create a post and toggle the modal
   createPost(post: Post): Observable<Post> {
     const url = `${this.endpoint}/posts/`;
     console.log(url);
+
     return this.http.post<Post>(url, post);
+  }
+
+  // Update post
+  updatePost(post: Post): Observable<Post> {
+    const url = `${this.endpoint}/posts/${post.id}`;
+    console.log(url);
+    return this.http.put<Post>(url, post);
   }
 
   // Error

@@ -23,8 +23,10 @@ export class AddPostComponent implements OnInit {
   }
 
   ngOnInit(): void {}
+
   submit(): void {
     console.log(this.addPostform.value);
-    // this.apiservice.addPost(this.addPostform.value);
+    this.apiservice.createPost(this.addPostform.value);
+    this.router.navigate(['/feed']);
   }
 }
