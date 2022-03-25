@@ -1,6 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
-import { AddPostComponent } from './../add-post/add-post.component';
 import { Subscription } from 'rxjs';
 import { ApiService } from './../../auth/api.service';
 import { Post } from './../../models/post';
@@ -18,11 +16,7 @@ export class FeedComponent implements OnInit {
     this.hidden = !this.hidden;
   }
 
-  constructor(private dialog: MatDialog, private apiService: ApiService) {}
-
-  openDialog() {
-    this.dialog.open(AddPostComponent);
-  }
+  constructor(private apiService: ApiService) {}
 
   ngOnInit(): void {
     this.getAllPost();

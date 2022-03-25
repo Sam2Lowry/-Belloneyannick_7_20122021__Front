@@ -16,3 +16,21 @@
   flex-direction: row;
   justify-content: space-between;
 }
+
+.formPost {
+  max-width: 35rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+h1 {
+  margin: 0 auto;
+  font-family: LobsterTwo-Regular;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+mat-form-field {
+  width: 100%;
+}

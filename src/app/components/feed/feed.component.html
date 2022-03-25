@@ -1,11 +1,20 @@
-<button
-  id="postCreate"
-  mat-raised-button
-  color="primary"
-  (click)="openDialog()"
->
-  Créer un post
-</button>
+<div class="formPost">
+  <h1>Créer un nouveau post</h1>
+  <mat-form-field appearance="fill">
+    <mat-label>Votre titre...</mat-label>
+    <input matInput />
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Votre publication...</mat-label>
+    <textarea matInput></textarea>
+  </mat-form-field>
+  <mat-form-field appearance="fill">
+    <mat-label>Veuillez poster ici l'url de votre image</mat-label>
+    <input matInput />
+    <mat-hint align="end">ex. imgur.com/chatonKroMigon.jpg</mat-hint>
+  </mat-form-field>
+  <button mat-raised-button color="primary">Publier</button>
+</div>
 <mat-card class="card">
   <mat-card-header>
     <div mat-card-avatar class="header-image"></div>
