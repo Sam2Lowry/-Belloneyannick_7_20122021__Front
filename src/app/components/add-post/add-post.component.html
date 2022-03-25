@@ -1,11 +1,12 @@
 <h1 mat-dialog-title>Créer un nouveau post</h1>
-<form [formGroup]="addPostform" (submit)="submit()" class="post-form">
+<form [formGroup]="addPostform" class="post-form">
   <mat-form-field class="post-full-width" appearance="fill">
     <mat-label>Title</mat-label>
     <input
       matInput
       formControlName="title"
       placeholder="Ex. Choupi le chaton"
+      required
     />
   </mat-form-field>
 
@@ -13,13 +14,21 @@
     <mat-label>Partagez votre contenu</mat-label>
     <textarea
       matInput
-      formControlName="body"
+      formControlName="content"
       placeholder="Ex. Voici babou mon chaton"
+      required
     ></textarea>
   </mat-form-field>
 </form>
 
 <div mat-dialog-actions>
-  <button mat-button type="submit">Poster</button>
+  <button
+    mat-button
+    type="submit"
+    (click)="submit()"
+    [disabled]="!addPostform.valid"
+  >
+    Poster
+  </button>
   <button mat-button mat-dialog-close>Annuler</button>
 </div>

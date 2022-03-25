@@ -1,6 +1,6 @@
 import { ApiService } from './../../auth/api.service';
 import { Router } from '@angular/router';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -9,20 +9,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./add-post.component.scss'],
 })
 export class AddPostComponent implements OnInit {
-  addPostform!: any;
+  addPostform!: FormGroup;
 
   constructor(
     public fb: FormBuilder,
     public router: Router,
     public apiservice: ApiService
-  ) {
+  ) {}
+
+  ngOnInit(): void {
     this.addPostform = this.fb.group({
       title: ['', Validators.required],
-      body: ['', Validators.required],
+      content: ['', Validators.required],
     });
   }
-
-  ngOnInit(): void {}
 
   submit(): void {
     console.log(this.addPostform.value);

@@ -11,7 +11,7 @@ import jwt_decode from 'jwt-decode';
 export class HeaderComponent implements OnInit {
   title: string = 'Groupomania';
   profileID!: number;
-  isAuthenticated: boolean = false;
+  public isAuthenticated: boolean = false;
   userID!: string;
 
   navigateToHome() {

@@ -51,7 +51,7 @@ export class ApiService {
     console.log(url);
     return this.http.get<User>(url);
   }
-
+  // Set session
   private setSession(authResult: any) {
     localStorage.setItem('token', authResult.token);
   }
@@ -72,9 +72,8 @@ export class ApiService {
 
   // Create a post and toggle the modal
   createPost(post: Post): Observable<Post> {
-    const url = `${this.endpoint}/posts/`;
+    const url = `${this.endpoint}/posts`;
     console.log(url);
-
     return this.http.post<Post>(url, post);
   }
 

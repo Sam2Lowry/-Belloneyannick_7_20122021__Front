@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { AddPostComponent } from './../add-post/add-post.component';
 import { Subscription } from 'rxjs';
 import { ApiService } from './../../auth/api.service';
 import { Post } from './../../models/post';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
