@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { ApiService } from './../../auth/api.service';
 import { Post } from './../../models/post';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormGroup } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-feed',
@@ -12,12 +14,24 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 export class FeedComponent implements OnInit {
   private sub!: Subscription;
   posts: Post[] = [];
+  addPostForm: any;
   hidden = false;
+
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
   }
 
-  constructor(private apiService: ApiService, private _snackBar: MatSnackBar) {}
+  constructor(
+    private apiService: ApiService,
+    private _snackBar: MatSnackBar,
+    public fb: FormBuilder
+  ) {
+    this.addPostForm = this.fb.group({
+      title: ['', Validators.required],
+      content: ['', Validators.required],
+      image_url: ['', Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     this.getAllPost();
@@ -32,14 +46,19 @@ export class FeedComponent implements OnInit {
     });
   }
   // Récupération du nombre de commentaires d'un post
-  /*getCounterComment(): void {
+  getCounterComment(): void {
     this.apiService.getAllPosts().subscribe((res) => {
       this.posts = res;
       console.log(this.posts.length);
       return this.posts.length;
     });
   }
-  */
+  submit(): void {
+    this.apiService.createPost(this.addPostForm.value);
+    this._snackBar.open('Post created', '', {
+      duration: 2000,
+    });
+  }
 
   ngOnDestroy(): void {
     // this.sub.unsubscribe();
