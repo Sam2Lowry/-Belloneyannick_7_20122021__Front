@@ -3,7 +3,11 @@
     <mat-card-header>
       <mat-card-title>Register</mat-card-title>
     </mat-card-header>
-    <form [formGroup]="RegisterForm" (submit)="submit()" class="register-form">
+    <form
+      [formGroup]="RegisterForm"
+      (ngSubmit)="submit()"
+      class="register-form"
+    >
       <mat-card-content>
         <mat-form-field class="register-full-width">
           <input

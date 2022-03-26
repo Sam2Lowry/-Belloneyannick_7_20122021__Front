@@ -58,6 +58,7 @@ export class FeedComponent implements OnInit {
     this._snackBar.open('Post created', '', {
       duration: 2000,
     });
+    this.getAllPost();
   }
 
   ngOnDestroy(): void {
