@@ -11,6 +11,7 @@ import { Post } from '../models/post';
 })
 export class ApiService {
   endpoint: string = 'http://localhost:3000/api/v1';
+  public isAuthenticated: boolean = false;
 
   constructor(private http: HttpClient, public router: Router) {}
 

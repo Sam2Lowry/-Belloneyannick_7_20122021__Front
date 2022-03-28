@@ -29,7 +29,7 @@ export class FeedComponent implements OnInit {
     this.addPostForm = this.fb.group({
       title: ['', Validators.required],
       content: ['', Validators.required],
-      image_url: ['', Validators.required],
+      image_url: [''],
     });
   }
 
@@ -54,11 +54,13 @@ export class FeedComponent implements OnInit {
     });
   }
   submit(): void {
+    console.log(this.addPostForm.value);
     this.apiService.createPost(this.addPostForm.value);
     this._snackBar.open('Post created', '', {
       duration: 2000,
     });
     this.getAllPost();
+    this.addPostForm.reset();
   }
 
   ngOnDestroy(): void {

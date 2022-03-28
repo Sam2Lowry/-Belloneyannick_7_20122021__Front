@@ -29,6 +29,11 @@ export class HeaderComponent implements OnInit {
   navigateToProfile() {
     this.router.navigateByUrl('/users' + '/' + this.profileID);
   }
+  navigateToLogout() {
+    localStorage.removeItem('token');
+    this.isAuthenticated = false;
+    this.router.navigateByUrl('/login');
+  }
 
   constructor(private router: Router, public loaderService: LoaderService) {}
 
@@ -39,6 +44,7 @@ export class HeaderComponent implements OnInit {
       const decoded: any = jwt_decode(tokenGrab);
       this.profileID = decoded.userId;
       console.log('voici le code', this.profileID);
+      console.log('voici le token', this.isAuthenticated);
     } else {
       this.isAuthenticated = false;
     }
