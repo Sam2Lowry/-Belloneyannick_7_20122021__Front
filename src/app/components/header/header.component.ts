@@ -1,3 +1,4 @@
+import { Subscription } from 'rxjs';
 import { ApiService } from './../../auth/api.service';
 import { LoaderService } from './../tools/loader/loader.service';
 import { Component, OnInit } from '@angular/core';
@@ -39,15 +40,17 @@ export class HeaderComponent implements OnInit {
     public apiservice: ApiService,
     private router: Router,
     public loaderService: LoaderService
-  ) {}
+  ) {
+    this.apiservice.isAuthenticated = !!localStorage.getItem('token');
+  }
 
   ngOnInit(): void {
-    if (localStorage.getItem('token')) {
+    console.log(this.apiservice.isAuthenticated);
+    if (this.apiservice.isAuthenticated) {
       const tokenGrab: any = localStorage.getItem('token');
       const decoded: any = jwt_decode(tokenGrab);
       this.profileID = decoded.userId;
-      console.log('voici le code', this.profileID);
-      console.log('voici le token', this.apiservice.isAuthenticated);
+      console.log(this.profileID);
     } else {
       this.navigateToLogin();
     }

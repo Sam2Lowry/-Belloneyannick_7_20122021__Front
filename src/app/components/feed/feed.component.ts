@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import { ApiService } from './../../auth/api.service';
 import { Post } from './../../models/post';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { FormGroup } from '@angular/forms';
 import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
@@ -53,9 +52,9 @@ export class FeedComponent implements OnInit {
       return this.posts.length;
     });
   }
-  submit(): void {
+  submit(): any {
     console.log(this.addPostForm.value);
-    this.apiService.createPost(this.addPostForm.value);
+    this.apiService.createPost(this.addPostForm.value).subscribe();
     this._snackBar.open('Post created', '', {
       duration: 2000,
     });

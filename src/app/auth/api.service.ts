@@ -10,8 +10,8 @@ import { Post } from '../models/post';
   providedIn: 'root',
 })
 export class ApiService {
-  endpoint: string = 'http://localhost:3000/api/v1';
-  public isAuthenticated: boolean = false;
+  private endpoint: string = 'http://localhost:3000/api/v1';
+  public isAuthenticated: Boolean = false;
 
   constructor(private http: HttpClient, public router: Router) {}
 
@@ -72,7 +72,7 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  // Create a post and toggle the modal
+  // Create a post
   createPost(post: Post): Observable<Post> {
     const url = `${this.endpoint}/posts`;
     console.log(url);
@@ -98,11 +98,12 @@ export class ApiService {
     }
     return msg;
   }
-  ngOnInit(): void {
+
+  ngOnInit(): boolean {
     if (localStorage.getItem('token')) {
-      this.isAuthenticated = true;
+      return (this.isAuthenticated = true);
     } else {
-      this.isAuthenticated = false;
+      return (this.isAuthenticated = false);
     }
   }
 }
