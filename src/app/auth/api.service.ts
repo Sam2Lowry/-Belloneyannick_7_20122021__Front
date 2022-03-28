@@ -27,6 +27,7 @@ export class ApiService {
       .post<any>(`${this.endpoint}/auth/login`, user)
       .subscribe((res: any) => {
         this.setSession(res);
+        this.isAuthenticated = true;
         this.router.navigate(['home']);
       });
   }
@@ -96,5 +97,12 @@ export class ApiService {
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return msg;
+  }
+  ngOnInit(): void {
+    if (localStorage.getItem('token')) {
+      this.isAuthenticated = true;
+    } else {
+      this.isAuthenticated = false;
+    }
   }
 }
