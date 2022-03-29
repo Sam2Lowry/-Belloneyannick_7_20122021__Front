@@ -1,3 +1,5 @@
+import { Subscription } from 'rxjs';
+import { ApiService } from './../../auth/api.service';
 import { LoaderService } from './../tools/loader/loader.service';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
@@ -11,7 +13,6 @@ import jwt_decode from 'jwt-decode';
 export class HeaderComponent implements OnInit {
   title: string = 'Groupomania';
   profileID!: number;
-  isAuthenticated: boolean = false;
   userID!: string;
 
   navigateToHome() {
@@ -29,18 +30,29 @@ export class HeaderComponent implements OnInit {
   navigateToProfile() {
     this.router.navigateByUrl('/users' + '/' + this.profileID);
   }
+  navigateToLogout() {
+    localStorage.removeItem('token');
+    this.apiservice.isAuthenticated = false;
+    this.router.navigateByUrl('/login');
+  }
 
-  constructor(private router: Router, public loaderService: LoaderService) {}
+  constructor(
+    public apiservice: ApiService,
+    private router: Router,
+    public loaderService: LoaderService
+  ) {
+    this.apiservice.isAuthenticated = !!localStorage.getItem('token');
+  }
 
   ngOnInit(): void {
-    if (localStorage.getItem('token')) {
-      this.isAuthenticated = true;
+    console.log(this.apiservice.isAuthenticated);
+    if (this.apiservice.isAuthenticated) {
       const tokenGrab: any = localStorage.getItem('token');
       const decoded: any = jwt_decode(tokenGrab);
       this.profileID = decoded.userId;
-      console.log('voici le code', this.profileID);
+      console.log(this.profileID);
     } else {
-      this.isAuthenticated = false;
+      this.navigateToLogin();
     }
   }
 }

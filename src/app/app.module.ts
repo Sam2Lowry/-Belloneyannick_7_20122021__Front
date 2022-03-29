@@ -1,3 +1,4 @@
+import { ApiService } from './auth/api.service';
 import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
@@ -17,7 +18,11 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { SingleFeedComponent } from './components/single-feed/single-feed.component';
-import { AddPostComponent } from './components/add-post/add-post.component';
+import { JwtModule } from '@auth0/angular-jwt';
+
+export function tokenGetter() {
+  return localStorage.getItem('token');
+}
 
 @NgModule({
   declarations: [
@@ -30,11 +35,17 @@ import { AddPostComponent } from './components/add-post/add-post.component';
     LoginComponent,
     UserProfileComponent,
     SingleFeedComponent,
-    AddPostComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
+    JwtModule.forRoot({
+      config: {
+        tokenGetter: tokenGetter,
+        allowedDomains: ['localhost:3000'],
+      },
+    }),
+
     AppRoutingModule,
     FormsModule,
     ReactiveFormsModule,

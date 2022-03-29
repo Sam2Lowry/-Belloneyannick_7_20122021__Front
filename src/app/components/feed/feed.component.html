@@ -1,11 +1,29 @@
-<button
-  id="postCreate"
-  mat-raised-button
-  color="primary"
-  (click)="openDialog()"
->
-  Créer un post
-</button>
+<div class="formPost">
+  <h1>Créer un nouveau post</h1>
+  <form [formGroup]="addPostForm" (ngSubmit)="submit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Votre titre...</mat-label>
+      <input matInput formControlName="title" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Votre publication...</mat-label>
+      <textarea matInput formControlName="content" required></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Veuillez poster ici l'url de votre image</mat-label>
+      <input matInput formControlName="image_url" />
+      <mat-hint align="end">ex. imgur.com/chatonKroMigon.jpg</mat-hint>
+    </mat-form-field>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!addPostForm.valid"
+    >
+      Publier
+    </button>
+  </form>
+</div>
 <mat-card class="card">
   <mat-card-header>
     <div mat-card-avatar class="header-image"></div>

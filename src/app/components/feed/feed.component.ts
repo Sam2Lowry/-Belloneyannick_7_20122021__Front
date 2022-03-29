@@ -1,10 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material/dialog';
-import { AddPostComponent } from './../add-post/add-post.component';
-import { Subscription } from 'rxjs';
+import { Subscription, map } from 'rxjs';
 import { ApiService } from './../../auth/api.service';
 import { Post } from './../../models/post';
-import { ActivatedRoute } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-feed',
@@ -14,15 +13,23 @@ import { ActivatedRoute } from '@angular/router';
 export class FeedComponent implements OnInit {
   private sub!: Subscription;
   posts: Post[] = [];
+  addPostForm: any;
   hidden = false;
+
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
   }
 
-  constructor(private dialog: MatDialog, private apiService: ApiService) {}
-
-  openDialog() {
-    this.dialog.open(AddPostComponent);
+  constructor(
+    private apiService: ApiService,
+    private _snackBar: MatSnackBar,
+    public fb: FormBuilder
+  ) {
+    this.addPostForm = this.fb.group({
+      title: ['', Validators.required],
+      content: ['', Validators.required],
+      image_url: [''],
+    });
   }
 
   ngOnInit(): void {
@@ -30,21 +37,30 @@ export class FeedComponent implements OnInit {
     //this.getCounterComment();
   }
 
+  // Récupération de tous les posts [A paginer par la suite]
   getAllPost(): void {
     this.apiService.getAllPosts().subscribe((res) => {
       this.posts = res;
       console.log(this.posts);
     });
   }
-
-  /*getCounterComment(): void {
+  // Récupération du nombre de commentaires d'un post
+  getCounterComment(): void {
     this.apiService.getAllPosts().subscribe((res) => {
       this.posts = res;
       console.log(this.posts.length);
       return this.posts.length;
     });
   }
-  */
+  submit(): any {
+    console.log(this.addPostForm.value);
+    this.apiService.createPost(this.addPostForm.value).subscribe();
+    this._snackBar.open('Post created', '', {
+      duration: 2000,
+    });
+    this.getAllPost();
+    this.addPostForm.reset();
+  }
 
   ngOnDestroy(): void {
     // this.sub.unsubscribe();

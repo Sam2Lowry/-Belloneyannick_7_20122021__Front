@@ -15,22 +15,47 @@
       </button>
     </div>
     <span class="spacer"></span>
-    <button (click)="navigateToLogin()" mat-button>
+    <button
+      *ngIf="!apiservice.isAuthenticated"
+      (click)="navigateToLogin()"
+      mat-button
+    >
       <mat-icon class="icon" aria-hidden="false" aria-label="login icon"
         >login</mat-icon
       >
     </button>
-    <button (click)="navigateToRegister()" mat-button>
+
+    <button
+      *ngIf="!apiservice.isAuthenticated"
+      (click)="navigateToRegister()"
+      mat-button
+    >
       <mat-icon class="icon" aria-hidden="false" aria-label="how_to_reg icon"
         >how_to_reg</mat-icon
       >
     </button>
-    <button (click)="navigateToProfile()" mat-button>
+    <button
+      *ngIf="apiservice.isAuthenticated"
+      (click)="navigateToProfile()"
+      mat-button
+    >
       <mat-icon
         class="icon"
         aria-hidden="false"
         aria-label="account_circle icon"
         >account_circle</mat-icon
+      >
+    </button>
+    <button
+      *ngIf="apiservice.isAuthenticated"
+      (click)="navigateToLogout()"
+      mat-button
+    >
+      <mat-icon
+        class="icon"
+        aria-hidden="false"
+        aria-label="account_circle icon"
+        >logout</mat-icon
       >
     </button>
   </mat-toolbar-row>

@@ -10,7 +10,8 @@ import { Post } from '../models/post';
   providedIn: 'root',
 })
 export class ApiService {
-  endpoint: string = 'http://localhost:3000/api/v1';
+  private endpoint: string = 'http://localhost:3000/api/v1';
+  public isAuthenticated: Boolean = false;
 
   constructor(private http: HttpClient, public router: Router) {}
 
@@ -26,6 +27,7 @@ export class ApiService {
       .post<any>(`${this.endpoint}/auth/login`, user)
       .subscribe((res: any) => {
         this.setSession(res);
+        this.isAuthenticated = true;
         this.router.navigate(['home']);
       });
   }
@@ -51,7 +53,7 @@ export class ApiService {
     console.log(url);
     return this.http.get<User>(url);
   }
-
+  // Set session
   private setSession(authResult: any) {
     localStorage.setItem('token', authResult.token);
   }
@@ -70,11 +72,10 @@ export class ApiService {
     return this.http.get(url);
   }
 
-  // Create a post and toggle the modal
+  // Create a post
   createPost(post: Post): Observable<Post> {
-    const url = `${this.endpoint}/posts/`;
+    const url = `${this.endpoint}/posts`;
     console.log(url);
-
     return this.http.post<Post>(url, post);
   }
 
@@ -96,5 +97,13 @@ export class ApiService {
       msg = `Error Code: ${error.status}\nMessage: ${error.message}`;
     }
     return msg;
+  }
+
+  ngOnInit(): boolean {
+    if (localStorage.getItem('token')) {
+      return (this.isAuthenticated = true);
+    } else {
+      return (this.isAuthenticated = false);
+    }
   }
 }
