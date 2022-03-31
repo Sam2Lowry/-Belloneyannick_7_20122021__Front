@@ -47,6 +47,12 @@
     >
       Commenter
     </button>
-    <button mat-raised-button color="accent">Supprimer</button>
+    <button
+      (click)="navigateToDestroy(post.id)"
+      mat-raised-button
+      color="accent"
+    >
+      Supprimer
+    </button>
   </mat-card-actions>
 </mat-card>
