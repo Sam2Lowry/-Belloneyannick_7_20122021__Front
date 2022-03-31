@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription, map } from 'rxjs';
+import { Subscription } from 'rxjs';
 import { ApiService } from './../../auth/api.service';
 import { Post } from './../../models/post';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -23,7 +24,8 @@ export class FeedComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private _snackBar: MatSnackBar,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private router: Router
   ) {
     this.addPostForm = this.fb.group({
       title: ['', Validators.required],
@@ -44,14 +46,17 @@ export class FeedComponent implements OnInit {
       console.log(this.posts);
     });
   }
-  // Récupération du nombre de commentaires d'un post
-  getCounterComment(): void {
-    this.apiService.getAllPosts().subscribe((res) => {
-      this.posts = res;
-      console.log(this.posts.length);
-      return this.posts.length;
-    });
+
+  // changement de vue pour commentaires détaillés
+  navigateToComments(id: number): void {
+    console.log(id);
   }
+
+  // Destruction du post
+  navigateToDestroy(id: number): void {
+    console.log(id);
+  }
+
   submit(): any {
     console.log(this.addPostForm.value);
     this.apiService.createPost(this.addPostForm.value).subscribe();
@@ -59,10 +64,10 @@ export class FeedComponent implements OnInit {
       duration: 2000,
     });
     this.getAllPost();
-    this.addPostForm.reset();
+    this.router.navigate(['/feed']);
   }
 
   ngOnDestroy(): void {
-    // this.sub.unsubscribe();
+    this.sub.unsubscribe();
   }
 }
