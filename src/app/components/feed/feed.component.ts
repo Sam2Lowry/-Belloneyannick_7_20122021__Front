@@ -12,7 +12,6 @@ import { Router } from '@angular/router';
   styleUrls: ['./feed.component.scss'],
 })
 export class FeedComponent implements OnInit {
-  private sub!: Subscription;
   posts: Post[] = [];
   addPostForm: any;
   hidden = false;
@@ -50,24 +49,24 @@ export class FeedComponent implements OnInit {
   // changement de vue pour commentaires détaillés
   navigateToComments(id: number): void {
     console.log(id);
+    this.router.navigate(['/feed/' + id]);
   }
 
   // Destruction du post
   navigateToDestroy(id: number): void {
-    console.log(id);
+    this.apiService.destroyPost(id).subscribe((_) => this.getAllPost());
+    this._snackBar.open('Post deleted', '', {
+      duration: 2000,
+    });
   }
 
   submit(): any {
     console.log(this.addPostForm.value);
-    this.apiService.createPost(this.addPostForm.value).subscribe();
+    this.apiService
+      .createPost(this.addPostForm.value)
+      .subscribe((_) => this.getAllPost());
     this._snackBar.open('Post created', '', {
       duration: 2000,
     });
-    this.getAllPost();
-    this.router.navigate(['/feed']);
-  }
-
-  ngOnDestroy(): void {
-    this.sub.unsubscribe();
   }
 }

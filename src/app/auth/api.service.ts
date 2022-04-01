@@ -79,11 +79,11 @@ export class ApiService {
     return this.http.post<Post>(url, post);
   }
 
-  // Update post
-  updatePost(post: Post): Observable<Post> {
-    const url = `${this.endpoint}/posts/${post.id}`;
+  //Destroy a post
+  destroyPost(id: number): Observable<any> {
+    const url = `${this.endpoint}/posts/${id}`;
     console.log(url);
-    return this.http.put<Post>(url, post);
+    return this.http.delete(url);
   }
 
   // Error
