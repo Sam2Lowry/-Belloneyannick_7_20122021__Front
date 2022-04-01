@@ -55,7 +55,7 @@ export class FeedComponent implements OnInit {
   // Destruction du post
   navigateToDestroy(id: number): void {
     this.apiService.destroyPost(id).subscribe((_) => this.getAllPost());
-    this._snackBar.open('Post deleted', '', {
+    this._snackBar.open('Post supprimé !', '', {
       duration: 2000,
     });
   }
@@ -65,7 +65,7 @@ export class FeedComponent implements OnInit {
     this.apiService
       .createPost(this.addPostForm.value)
       .subscribe((_) => this.getAllPost());
-    this._snackBar.open('Post created', '', {
+    this._snackBar.open('Post crée !', '', {
       duration: 2000,
     });
   }
