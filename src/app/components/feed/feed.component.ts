@@ -44,12 +44,6 @@ export class FeedComponent implements OnInit {
     });
   }
 
-  // Changement de vue pour commentaires détaillés
-  navigateToComments(id: number): void {
-    console.log(id);
-    this.router.navigate(['/feed/' + id]);
-  }
-
   submit(): any {
     console.log(this.addPostForm.value);
     this.apiService
@@ -58,5 +52,11 @@ export class FeedComponent implements OnInit {
     this._snackBar.open('Post crée !', '', {
       duration: 2000,
     });
+  }
+
+  // Changement de vue pour commentaires détaillés
+  navigateToComments(id: number): void {
+    console.log(id);
+    this.router.navigate(['/feed/' + id]);
   }
 }
