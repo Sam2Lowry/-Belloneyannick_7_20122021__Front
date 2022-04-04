@@ -7,7 +7,6 @@ export interface Post {
   author_id: number;
   date_creation: string;
   date_update: string;
-
   _count: Count;
 }
 
