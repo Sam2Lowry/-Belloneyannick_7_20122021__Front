@@ -16,18 +16,24 @@
       mountainous terrain, the Shiba Inu was originally bred for hunting.
     </p>
   </mat-card-content>
-  <form class="post-form">
+  <form [formGroup]="addCommentForm" (ngSubmit)="onSubmit()" class="post-form">
     <mat-form-field class="post-full-width" appearance="fill">
       <mat-label>Réagissez</mat-label>
-      <textarea matInput placeholder="Ex. Qu'il est mignon ce chien"></textarea>
+      <textarea
+        formControlName="content"
+        matInput
+        placeholder="Ex. Qu'il est mignon ce chien"
+      ></textarea>
     </mat-form-field>
   </form>
   <mat-card-actions id="cmdBox">
-    <button mat-raised-button color="primary">Commenter</button>
+    <button type="submit" mat-raised-button color="primary">Commenter</button>
     <button mat-raised-button color="accent">Supprimer</button>
   </mat-card-actions>
 </mat-card>
 
+<!-- réunifier le formulaire ! -->
+  
 <mat-card class="comment-card">
   <mat-card-title-group>
     <mat-card-title>John Lombek</mat-card-title>

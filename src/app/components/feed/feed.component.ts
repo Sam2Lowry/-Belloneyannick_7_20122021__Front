@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Subscription, map } from 'rxjs';
 import { ApiService } from './../../auth/api.service';
-import { Post } from './../../models/post';
+import { Post, Count } from './../../models/post';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-feed',
@@ -11,7 +11,6 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./feed.component.scss'],
 })
 export class FeedComponent implements OnInit {
-  private sub!: Subscription;
   posts: Post[] = [];
   addPostForm: any;
   hidden = false;
@@ -23,7 +22,8 @@ export class FeedComponent implements OnInit {
   constructor(
     private apiService: ApiService,
     private _snackBar: MatSnackBar,
-    public fb: FormBuilder
+    public fb: FormBuilder,
+    private router: Router
   ) {
     this.addPostForm = this.fb.group({
       title: ['', Validators.required],
@@ -34,35 +34,29 @@ export class FeedComponent implements OnInit {
 
   ngOnInit(): void {
     this.getAllPost();
-    //this.getCounterComment();
   }
 
   // Récupération de tous les posts [A paginer par la suite]
   getAllPost(): void {
     this.apiService.getAllPosts().subscribe((res) => {
       this.posts = res;
-      console.log(this.posts);
+      console.log('voici la réponse', this.posts);
     });
-  }
-  // Récupération du nombre de commentaires d'un post
-  getCounterComment(): void {
-    this.apiService.getAllPosts().subscribe((res) => {
-      this.posts = res;
-      console.log(this.posts.length);
-      return this.posts.length;
-    });
-  }
-  submit(): any {
-    console.log(this.addPostForm.value);
-    this.apiService.createPost(this.addPostForm.value).subscribe();
-    this._snackBar.open('Post created', '', {
-      duration: 2000,
-    });
-    this.getAllPost();
-    this.addPostForm.reset();
   }
 
-  ngOnDestroy(): void {
-    // this.sub.unsubscribe();
+  // Changement de vue pour commentaires détaillés
+  navigateToComments(id: number): void {
+    console.log(id);
+    this.router.navigate(['/feed/' + id]);
+  }
+
+  submit(): any {
+    console.log(this.addPostForm.value);
+    this.apiService
+      .createPost(this.addPostForm.value)
+      .subscribe((_) => this.getAllPost());
+    this._snackBar.open('Post crée !', '', {
+      duration: 2000,
+    });
   }
 }
