@@ -41,18 +41,11 @@
       (click)="navigateToComments(post.id)"
       mat-raised-button
       color="primary"
-      matBadge="8"
+      matBadge="{{ post._count.comment }}"
       matBadgePosition="after"
       matBadgeColor="accent"
     >
       Commenter
-    </button>
-    <button
-      (click)="navigateToDestroy(post.id)"
-      mat-raised-button
-      color="accent"
-    >
-      Supprimer
     </button>
   </mat-card-actions>
 </mat-card>
