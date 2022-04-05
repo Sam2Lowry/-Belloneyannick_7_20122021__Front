@@ -5,6 +5,7 @@ import { User } from '../models/user';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Router } from '@angular/router';
 import { Post } from '../models/post';
+import { Comment } from '../models/comment';
 
 @Injectable({
   providedIn: 'root',
@@ -84,6 +85,13 @@ export class ApiService {
     const url = `${this.endpoint}/posts/${id}`;
     console.log(url);
     return this.http.delete(url);
+  }
+
+  // Get all comments
+  getAllComments(): Observable<Comment[]> {
+    const url = `${this.endpoint}/comments/`;
+    console.log(url);
+    return this.http.get<Comment[]>(url);
   }
 
   // Error

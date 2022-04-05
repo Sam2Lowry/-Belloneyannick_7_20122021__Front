@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ApiService } from './../../auth/api.service';
-import { Post, Count } from './../../models/post';
+import { Post } from './../../models/post';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
