@@ -87,9 +87,9 @@ export class ApiService {
     return this.http.delete(url);
   }
 
-  // Get all comments
-  getAllComments(): Observable<Comment[]> {
-    const url = `${this.endpoint}/comments/`;
+  // Get all comments on a post
+  getAllComments(id: number): Observable<Comment[]> {
+    const url = `${this.endpoint}/comments/post/${id}`;
     console.log(url);
     return this.http.get<Comment[]>(url);
   }

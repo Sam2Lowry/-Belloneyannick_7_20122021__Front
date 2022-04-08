@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class AddPostComponent implements OnInit {
   addPostform!: FormGroup;
+  updatePost: boolean = false;
 
   constructor(
     public fb: FormBuilder,

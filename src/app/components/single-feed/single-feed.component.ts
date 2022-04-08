@@ -4,7 +4,7 @@ import { ApiService } from './../../auth/api.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Comment } from '../../models/comment';
-import { Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-single-feed',
@@ -14,6 +14,7 @@ import { Router } from '@angular/router';
 export class SingleFeedComponent implements OnInit {
   private sub!: Subscription;
   comments: Comment[] = [];
+  updatePost: boolean = false;
   addCommentForm: any;
   hidden = false;
 
@@ -25,7 +26,7 @@ export class SingleFeedComponent implements OnInit {
     private apiService: ApiService,
     private _snackBar: MatSnackBar,
     public fb: FormBuilder,
-    private router: Router
+    private route: ActivatedRoute
   ) {
     this.addCommentForm = this.fb.group({
       content: ['', Validators.required],
@@ -45,9 +46,14 @@ export class SingleFeedComponent implements OnInit {
 
   // Récupération de tous les posts [A paginer par la suite]
   getAllComments(): void {
-    this.apiService.getAllComments().subscribe((res) => {
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    this.apiService.getAllComments(id).subscribe((res) => {
       this.comments = res;
       console.log('voici la réponse', this.comments);
     });
+  }
+
+  onUpdatePost(): void {
+    this.updatePost = !this.updatePost;
   }
 }
