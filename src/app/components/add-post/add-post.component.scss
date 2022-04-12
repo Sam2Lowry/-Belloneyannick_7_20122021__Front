@@ -1,9 +1,11 @@
-.post-form {
-  min-width: 150px;
-  max-width: 500px;
-  width: 100%;
+.formPost {
+  max-width: 35rem;
+  margin: 0 auto;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
 }
-
-.post-full-width {
+mat-form-field {
   width: 100%;
 }

@@ -14,6 +14,7 @@ import { ActivatedRoute } from '@angular/router';
 export class SingleFeedComponent implements OnInit {
   private sub!: Subscription;
   comments: Comment[] = [];
+  post: any;
   updatePost: boolean = false;
   addCommentForm: any;
   hidden = false;
@@ -34,6 +35,7 @@ export class SingleFeedComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.getSingleFeed();
     this.getAllComments();
   }
 
@@ -49,11 +51,14 @@ export class SingleFeedComponent implements OnInit {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.apiService.getAllComments(id).subscribe((res) => {
       this.comments = res;
-      console.log('voici la réponse', this.comments);
+      console.log('voici la réponse comment', this.comments);
     });
   }
-
-  onUpdatePost(): void {
-    this.updatePost = !this.updatePost;
+  getSingleFeed(): void {
+    const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
+    this.apiService.getPost(id).subscribe((res) => {
+      this.post = res;
+      console.log('voici la réponse post', this.post);
+    });
   }
 }

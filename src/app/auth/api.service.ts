@@ -13,6 +13,7 @@ import { Comment } from '../models/comment';
 export class ApiService {
   private endpoint: string = 'http://localhost:3000/api/v1';
   public isAuthenticated: Boolean = false;
+  public updatePost: boolean = false;
 
   constructor(private http: HttpClient, public router: Router) {}
 

@@ -1,34 +1,26 @@
-<h1 mat-dialog-title>Créer un nouveau post</h1>
-<form [formGroup]="addPostform" class="post-form">
-  <mat-form-field class="post-full-width" appearance="fill">
-    <mat-label>Title</mat-label>
-    <input
-      matInput
-      formControlName="title"
-      placeholder="Ex. Choupi le chaton"
-      required
-    />
-  </mat-form-field>
-
-  <mat-form-field class="post-full-width" appearance="fill">
-    <mat-label>Partagez votre contenu</mat-label>
-    <textarea
-      matInput
-      formControlName="content"
-      placeholder="Ex. Voici babou mon chaton"
-      required
-    ></textarea>
-  </mat-form-field>
-</form>
-
-<div mat-dialog-actions>
-  <button
-    mat-button
-    type="submit"
-    (click)="submit()"
-    [disabled]="!addPostform.valid"
-  >
-    Poster
-  </button>
-  <button mat-button mat-dialog-close>Annuler</button>
+<div class="formPost">
+  <h1>Mettez à jour votre post</h1>
+  <form [formGroup]="postUpdateForm" (ngSubmit)="submit()">
+    <mat-form-field appearance="fill">
+      <mat-label>Votre titre...</mat-label>
+      <input matInput formControlName="title" required />
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Votre publication...</mat-label>
+      <textarea matInput formControlName="content" required></textarea>
+    </mat-form-field>
+    <mat-form-field appearance="fill">
+      <mat-label>Veuillez poster ici l'url de votre image</mat-label>
+      <input matInput formControlName="image_url" />
+      <mat-hint align="end">ex. imgur.com/chatonKroMigon.jpg</mat-hint>
+    </mat-form-field>
+    <button
+      type="submit"
+      mat-raised-button
+      color="primary"
+      [disabled]="!postUpdateForm.valid"
+    >
+      Publier
+    </button>
+  </form>
 </div>
