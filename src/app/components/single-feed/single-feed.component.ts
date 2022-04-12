@@ -1,7 +1,6 @@
 import { FormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ApiService } from './../../auth/api.service';
-import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Comment } from '../../models/comment';
 import { ActivatedRoute } from '@angular/router';
@@ -12,13 +11,11 @@ import { ActivatedRoute } from '@angular/router';
   styleUrls: ['./single-feed.component.scss'],
 })
 export class SingleFeedComponent implements OnInit {
-  private sub!: Subscription;
   comments: Comment[] = [];
   post: any;
   updatePost: boolean = false;
   addCommentForm: any;
   hidden = false;
-
   toggleBadgeVisibility() {
     this.hidden = !this.hidden;
   }
@@ -58,6 +55,7 @@ export class SingleFeedComponent implements OnInit {
     const id = parseInt(this.route.snapshot.paramMap.get('id')!, 10);
     this.apiService.getPost(id).subscribe((res) => {
       this.post = res;
+
       console.log('voici la réponse post', this.post);
     });
   }
