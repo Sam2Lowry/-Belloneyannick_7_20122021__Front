@@ -1,7 +1,8 @@
 import { ActivatedRoute } from '@angular/router';
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ApiService } from './../../auth/api.service';
+import { EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-add-post',
@@ -10,6 +11,7 @@ import { ApiService } from './../../auth/api.service';
 })
 export class AddPostComponent implements OnInit {
   postUpdateForm: any;
+  @Output('parentFun') parentFun: EventEmitter<any> = new EventEmitter();
 
   constructor(
     public fb: FormBuilder,
@@ -27,7 +29,8 @@ export class AddPostComponent implements OnInit {
   }
 
   submit(): void {
-    console.log('pouet pouet pouet');
+    /* console.log('pouet pouet pouet'); */
+    this.parentFun.emit();
   }
 
   fillEditForm(): void {

@@ -59,4 +59,7 @@ export class SingleFeedComponent implements OnInit {
       console.log('voici la réponse post', this.post);
     });
   }
+  parentFun(): void {
+    console.log('parent component function');
+  }
 }

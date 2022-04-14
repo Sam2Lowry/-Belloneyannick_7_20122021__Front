@@ -1,20 +1,18 @@
-<app-add-post></app-add-post>
+<app-add-post (parentFun)="parentFun()"></app-add-post>
 <mat-card class="card">
   <mat-card-header>
-    <div mat-card-avatar class="header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
+    <div
+      mat-card-avatar
+      class="header-image"
+      [ngStyle]="{ 'background-image': 'url(' + post.profilePic + ')' }"
+    ></div>
+    <mat-card-title>{{ post.title }}</mat-card-title>
+    <mat-card-subtitle>{{ post.id }}</mat-card-subtitle>
   </mat-card-header>
-  <img
-    mat-card-image
-    src="https://material.angular.io/assets/img/examples/shiba2.jpg"
-    alt="Photo of a Shiba Inu"
-  />
+  <img mat-card-image src="{{ post.image_url }}" />
   <mat-card-content class="content">
     <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz
-      breeds of dog from Japan. A small, agile dog that copes very well with
-      mountainous terrain, the Shiba Inu was originally bred for hunting.
+      {{ post.content }}
     </p>
   </mat-card-content>
   <form [formGroup]="addCommentForm" (ngSubmit)="onSubmit()" class="post-form">
@@ -38,20 +36,21 @@
 
 <!-- réunifier le formulaire ! -->
 
-<mat-card class="comment-card">
+<mat-card class="comment-card" *ngFor="let comment of comments">
   <mat-card-title-group>
-    <mat-card-title>John Lombek</mat-card-title>
-    <mat-card-subtitle>12 Nov. 2020</mat-card-subtitle>
+    <mat-card-title> {{ comment.commentAuthor }}</mat-card-title>
+    <mat-card-subtitle>{{
+      comment.date_creation | date: "short"
+    }}</mat-card-subtitle>
     <!-- <img
       mat-card-sm-image
       src="https://material.angular.io/assets/img/examples/shiba2.jpg"
     /> -->
   </mat-card-title-group>
   <mat-card-content>
-    "Lorem ipsum dolor sit amet consectetur adipisicing elit." Eum fuga magni
-    quod perspiciatis ratione reiciendis veniam, ut quisquam dolores blanditiis?
+    {{ comment.content }}
   </mat-card-content>
-  <button mat-mini-fab color="primary">
-    <mat-icon>delete</mat-icon>
-  </button>
+  <!--<button mat-mini-fab color="primary">
+   <mat-icon>delete</mat-icon>
+  </button>-->
 </mat-card>
