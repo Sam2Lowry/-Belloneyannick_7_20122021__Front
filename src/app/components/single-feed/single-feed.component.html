@@ -1,4 +1,4 @@
-<app-add-post (parentFun)="parentFun()"></app-add-post>
+<app-add-post (parentFun)="parentFun()" *ngIf="updatePost"></app-add-post>
 <mat-card class="card">
   <mat-card-header>
     <div
@@ -27,7 +27,14 @@
   </form>
   <mat-card-actions id="cmdBox">
     <button type="submit" mat-raised-button color="primary">Commenter</button>
-    <button id="modifyPost" mat-raised-button color="accent">modifier</button>
+    <button
+      id="modifyPost"
+      mat-raised-button
+      color="accent"
+      (click)="openEditPost()"
+    >
+      modifier
+    </button>
     <button id="deletePost" mat-mini-fab color="accent">
       <mat-icon>delete</mat-icon>
     </button>
@@ -35,7 +42,9 @@
 </mat-card>
 
 <!-- réunifier le formulaire ! -->
-
+<span *ngIf="!comments.length">
+  <h2>Pas de commentaires à afficher</h2>
+</span>
 <mat-card class="comment-card" *ngFor="let comment of comments">
   <mat-card-title-group>
     <mat-card-title> {{ comment.commentAuthor }}</mat-card-title>

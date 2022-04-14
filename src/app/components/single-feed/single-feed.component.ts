@@ -62,4 +62,7 @@ export class SingleFeedComponent implements OnInit {
   parentFun(): void {
     console.log('parent component function');
   }
+  openEditPost(): void {
+    this.updatePost = !this.updatePost;
+  }
 }
