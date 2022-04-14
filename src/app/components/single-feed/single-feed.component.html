@@ -1,5 +1,5 @@
 <app-add-post (parentFun)="parentFun()" *ngIf="updatePost"></app-add-post>
-<mat-card class="card">
+<mat-card class="card" *ngIf="post">
   <mat-card-header>
     <div
       mat-card-avatar
@@ -42,9 +42,9 @@
 </mat-card>
 
 <!-- réunifier le formulaire ! -->
-<span *ngIf="!comments.length">
+<div id="noComments" *ngIf="comments === null">
   <h2>Pas de commentaires à afficher</h2>
-</span>
+</div>
 <mat-card class="comment-card" *ngFor="let comment of comments">
   <mat-card-title-group>
     <mat-card-title> {{ comment.commentAuthor }}</mat-card-title>
