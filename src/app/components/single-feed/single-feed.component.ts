@@ -5,6 +5,7 @@ import { ApiService } from './../../auth/api.service';
 import { Component, OnInit } from '@angular/core';
 import { Comment } from '../../models/comment';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-single-feed',
@@ -15,7 +16,8 @@ export class SingleFeedComponent implements OnInit {
   comments: Comment[] = [];
   addCommentForm: any;
   post!: Post;
-
+  isUserAdmin!: boolean; // Affichage de la vue delete
+  isUserAuthor!: boolean; // Affichage de la vue formulaire (mise à jour) pour edit le post
   updatePost: boolean = false;
   hidden = false;
 
@@ -27,7 +29,8 @@ export class SingleFeedComponent implements OnInit {
     private apiService: ApiService,
     private _snackBar: MatSnackBar,
     public fb: FormBuilder,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private Auth: AuthService
   ) {
     this.addCommentForm = this.fb.group({
       content: ['', Validators.required],
@@ -37,6 +40,10 @@ export class SingleFeedComponent implements OnInit {
   ngOnInit(): void {
     this.getSingleFeed();
     this.getAllComments();
+    this.isUserAdmin = this.Auth.isAdmin();
+    this.isUserAuthor = this.Auth.getUserId() === this.post.author_id;
+    console.log('isUserAdmin', this.isUserAdmin);
+    console.log('isUserAuthor', this.isUserAuthor);
   }
 
   onSubmit(): any {
@@ -68,6 +75,7 @@ export class SingleFeedComponent implements OnInit {
   // Appel de fonction child to parent
   parentFun(): void {
     console.log('parent component function');
+    this.openEditPost();
   }
 
   // Affichage de la vue formulaire (mise à jour) pour edit le post
